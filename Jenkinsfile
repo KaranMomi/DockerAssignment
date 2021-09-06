@@ -23,7 +23,7 @@ pipeline {
                 sh 'cd /demo'
                 echo 'pwd'
                 echo 'ls'
-                sh 'mvn clean install'
+                sh 'sudo mvn clean install'
                 echo 'Creating Artifacts..'
                 archiveArtifacts artifacts: 'target/*.jar'
             }
