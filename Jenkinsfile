@@ -7,9 +7,35 @@ pipeline {
                 sh 'docker pull openjdk:8-jdk-slim'
             }
         }
-        stage('files path') {
+        stage('Build and Artifact') {
+            
+            agent{
+                  docker {
+                        image 'maven:3.8.2-openjdk-11'
+                        args '-v $WORKSPACE:/demo -u root'
+                        label 'dockerone'
+                    }
+                }
             steps {
-                echo 'files path'
+                echo "Changing Directory"
+                sh 'cd /demo'
+                echo 'pwd'
+                echo 'ls'
+                sh 'mvn clean install'
+                echo 'Creating Artifacts..'
+                archiveArtifacts artifacts: 'target/*.jar'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                echo "Creating image to run the java file"
+                sh 'docker build -t runjar .'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                echo "Running the container to see output of java file"
+                sh 'docker run runjar'
             }
         }
         stage('final stage') {
