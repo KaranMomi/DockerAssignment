@@ -24,7 +24,7 @@ pipeline {
                 echo 'ls'
                 sh 'python hello.py'
                 echo 'Creating Artifacts..'
-                archiveArtifacts artifacts: 'target/*.py'
+                archiveArtifacts artifacts: '*.py'
             }
         }
         stage('Build Docker Image') {
