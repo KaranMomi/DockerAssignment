@@ -30,7 +30,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Creating image to run the py file"
-                sh 'docker build -t runpy'
+                sh 'docker build -t runpy .'
             }
         }
         stage('Run Docker Container') {
