@@ -13,6 +13,7 @@ pipeline {
                   docker {
                         image 'maven:3.8.2-openjdk-11'
                         args '-v $WORKSPACE:/demo -u root'
+                        label 'MASTER'
                     }
                 }
             steps {
