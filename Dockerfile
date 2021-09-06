@@ -1,4 +1,4 @@
 FROM python:3.7-alpine
-COPY target/*.py /tmp/hello.py
+COPY *.py /tmp/hello.py
 WORKDIR /tmp
 CMD [ "python", "hello.py"]
