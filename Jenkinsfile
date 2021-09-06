@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'MASTER'
+    }
     stages {
         stage('Pulling Docker images') {
             steps {
